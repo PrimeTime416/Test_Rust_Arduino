@@ -8,6 +8,12 @@ fn main() -> ! {
     let dp = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(dp);
 
+        // Configure the serial interface with a baud rate of 57600
+    let mut serial = arduino_hal::default_serial!(dp, pins, 57600);
+
+        // Write to the serial port
+    ufmt::uwriteln!(&mut serial, "Hello, Serial Terminal!\r").unwrap();
+
     /*
      * For examples (and inspiration), head to
      *
